@@ -23,7 +23,11 @@
   <meta name="twitter:image" content="https://okishin.search-mania.net/ogp.png">
 
   <!-- Favicon -->
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 
   <!-- Google Fonts: 筆文字 Yuji Mai + 力強い明朝 Shippori Mincho B1 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,12 +132,9 @@
     #nav.scrolled { background: color-mix(in srgb,var(--bg) 92%,transparent); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
     .nav-inner { display: flex; align-items: center; justify-content: space-between; }
     .nav-logo { display: inline-flex; align-items: center; }
-    .nav-logo-txt { display: inline-flex; flex-direction: column; line-height: 1.1; }
-    .nav-logo-abbr { font-family: var(--font-serif); font-size: 20px; font-weight: 900; color: var(--ink); letter-spacing: .06em; }
-    .nav-logo-full { font-family: var(--font-sans); font-size: 10px; letter-spacing: .18em; color: var(--ink-m); font-weight: 400; margin-top: 4px; }
+    .nav-logo-img { height: 58px; width: auto; display: block; }
     @media (max-width: 540px) {
-      .nav-logo-abbr { font-size: 17px; }
-      .nav-logo-full { font-size: 9px; letter-spacing: .14em; }
+      .nav-logo-img { height: 46px; }
     }
     .nav-links { display: flex; gap: 28px; align-items: center; font-size: 13px; }
     .nav-links a { color: var(--ink-s); transition: color .2s; }
@@ -546,8 +547,10 @@
     footer { background: #02040e; border-top: 1px solid var(--line); padding: 48px 0 24px; text-align: center; }
     :root[data-theme="light"] footer { background: var(--bg2); }
     .footer-logo-block { display: block; margin-bottom: 12px; }
-    .footer-logo { font-family: var(--font-serif); font-size: 26px; font-weight: 900; color: var(--gold-lt); letter-spacing: .06em; line-height: 1.1; }
-    .footer-org { font-family: var(--font-sans); font-size: 12px; letter-spacing: .14em; color: var(--ink-m); margin-top: 6px; }
+    .footer-logo-img { height: 120px; width: auto; }
+    :root[data-theme="dark"] .footer-logo-img { filter: brightness(1) invert(0); }
+    /* light背景ではロゴをそのまま、dark背景では白抜きに近く見せる */
+    :root:not([data-theme="light"]) .footer-logo-img { filter: brightness(1.05); }
     .footer-sub { font-size: 11px; letter-spacing: .18em; color: var(--ink-m); margin: 16px 0 28px; }
     .footer-legal { margin: 24px 0 16px; font-size: 12px; letter-spacing: .06em; }
     .footer-legal a { color: var(--ink-s); text-decoration: underline; text-underline-offset: 3px; transition: color .2s; }
@@ -774,10 +777,7 @@
 <nav id="nav">
   <div class="wrap nav-inner">
     <a href="#" class="nav-logo" aria-label="オキシン 沖縄進学支援会 トップへ">
-      <span class="nav-logo-txt">
-        <span class="nav-logo-abbr">オキシン</span>
-        <span class="nav-logo-full">沖縄進学支援会</span>
-      </span>
+      <img src="assets/okishin-logo.png" alt="オキシン 沖縄進学支援会" class="nav-logo-img">
     </a>
     <div class="nav-links">
       <a href="#story">流れ</a>
@@ -1306,8 +1306,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-logo-block">
-      <div class="footer-logo">オキシン</div>
-      <div class="footer-org">沖縄進学支援会 / Okinawa Shingaku Shienkai</div>
+      <img src="assets/okishin-logo.png" alt="オキシン 沖縄進学支援会" class="footer-logo-img">
     </div>
     <div class="footer-sub">GUINNESS WORLD RECORD CHALLENGE 2028 — 歌でつなぐ、進学の光</div>
     <div class="footer-links">
