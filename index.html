@@ -96,9 +96,9 @@
     }
     @media (prefers-color-scheme: light) {
       :root {
-        --bg:#f8f3e8; --bg2:#ede8d8; --bg3:#e0d8c4;
-        --ink:#0d1428; --ink-s:#2a3a60; --ink-m:#5a6a90;
-        --line:rgba(10,20,60,.12);
+        --bg:#ffffff; --bg2:#f7f5f0; --bg3:#ebe8df;
+        --ink:#0d1428; --ink-s:#2a3a60; --ink-m:#6b7593;
+        --line:rgba(10,20,60,.08);
       }
     }
     :root[data-theme="dark"]  {
@@ -107,14 +107,31 @@
       --line:rgba(201,168,76,.15);
     }
     :root[data-theme="light"] {
-      --bg:#f8f3e8; --bg2:#ede8d8; --bg3:#e0d8c4;
-      --ink:#0d1428; --ink-s:#2a3a60; --ink-m:#5a6a90;
-      --line:rgba(10,20,60,.12);
+      --bg:#ffffff; --bg2:#f7f5f0; --bg3:#ebe8df;
+      --ink:#0d1428; --ink-s:#2a3a60; --ink-m:#6b7593;
+      --line:rgba(10,20,60,.08);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { font-size: 16px; scroll-behavior: smooth; }
     body { font-family: var(--font-sans); background: var(--bg); color: var(--ink); line-height: 1.75; overflow-x: hidden; transition: background .3s, color .3s; }
+    /* light時のみ: パール白 → 微かな金オーバーレイの上品なグラデ */
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) body {
+        background:
+          radial-gradient(ellipse 80% 60% at 20% 0%, rgba(201,168,76,.05) 0%, transparent 55%),
+          radial-gradient(ellipse 70% 50% at 90% 100%, rgba(224,122,30,.04) 0%, transparent 60%),
+          linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
+        background-attachment: fixed;
+      }
+    }
+    :root[data-theme="light"] body {
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 0%, rgba(201,168,76,.05) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 90% 100%, rgba(224,122,30,.04) 0%, transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, #fbfaf6 100%);
+      background-attachment: fixed;
+    }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
     h1,h2,h3 { font-family: var(--font-serif); text-wrap: balance; }
