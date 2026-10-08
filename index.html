@@ -1313,6 +1313,40 @@
 
     /* 支援者ロゴマーキー */
     .supporters-block { margin-top: 20px; }
+    .supporters-section {
+      position: relative;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: clamp(28px,4vw,44px) 0 clamp(24px,3vw,32px);
+      z-index: 2;
+    }
+    .supporters-section .supporters-title {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font-sans); font-weight: 700;
+      font-size: 12px; letter-spacing: .22em;
+      color: var(--gold-dk);
+      margin: 0 0 18px;
+      text-align: left;
+    }
+    .supporters-section .st-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,.2);
+    }
+    .supporters-section .st-count {
+      margin-left: 6px; padding-left: 10px;
+      border-left: 1px solid var(--line);
+      color: var(--ink-m); font-size: 11px;
+    }
+    .supporters-section .st-count strong { color: var(--ink); font-weight: 900; font-size: 13px; margin-right: 2px; font-variant-numeric: tabular-nums; }
+    .supporters-section .supporters-note {
+      margin-top: 16px;
+      font-size: 11px; letter-spacing: .04em;
+      color: var(--ink-m);
+      text-align: center;
+      line-height: 1.7;
+    }
     .supporters-title {
       font-family: var(--font-sans); font-weight: 700;
       font-size: 12px; letter-spacing: .22em;
@@ -1617,39 +1651,6 @@
       </div>
 
       <p class="thanks-cta-lead">— ここからが、僕たちの挑戦のスタートです。</p>
-
-      <!-- 支援者ロゴ マーキー -->
-      <div class="supporters-block">
-        <p class="supporters-title">ご支援いただいた皆さま</p>
-        <div class="marquee" role="list" aria-label="支援者ロゴ一覧">
-          <div class="marquee-track" id="supportersTrack">
-            <!-- 1周目 (JSで複製して無限ループ) -->
-            <div class="supporter" role="listitem"><img src="assets/supporters/クレープの森.jpg" alt="クレープの森" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/レモンハート.jpg" alt="BAR LEMON HEART" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/showmarine.jpg" alt="Show Marine" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/wanabe.png" alt="WANABE MOVIE" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/松尾不動産.jpg" alt="松尾不動産 Matsuo Real Estate" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/大同生命.jpg" alt="大同生命" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/Kiratt.jpg" alt="Kiratt 歯のホワイトニング専門店" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/センターグループ.png" alt="CENTER GROUP" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/イナミ塩ラーメン.jpg" alt="イナミ塩ラーメン" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/niibunjaa.jpg" alt="沖縄そば にぃぶんじゃ〜" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/かめたろうやー.jpg" alt="かめたろうやー 羽地古民家" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/carmatch-naha-shuri.jpg" alt="車販戦隊カーマッチ 那覇首里店" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/sstyle.jpg" alt="S style" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/anshare-v2.jpg" alt="anshare" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/そらまめDRONE.jpg" alt="そらまめ DRONE" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/akipro.jpg" alt="Akipro." loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/searchmania.png" alt="SearchMania" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/chic.jpg" alt="Chic メンズ脱毛サロン" loading="lazy"></div>
-            <!-- ロゴなし・テキストのみ -->
-            <div class="supporter supporter-text" role="listitem"><span>B級酒場<br>FreeMoon</span></div>
-            <div class="supporter supporter-text" role="listitem"><span>（有）<br>鏡原酒販</span></div>
-            <div class="supporter supporter-text" role="listitem"><span>宮里 匠 様</span></div>
-          </div>
-        </div>
-        <p class="supporters-note">※ 一部の皆さまはお名前のみの掲載となっております。掲載希望・差替えご希望は代表までご連絡ください。</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1701,6 +1702,46 @@
     </button>
   </div>
 </aside>
+
+<!-- 支援者ロゴマーキー (常時表示: モーダル開かずとも感謝を伝える) -->
+<section id="supporters" class="supporters-section" aria-label="ご支援いただいた皆さま">
+  <div class="wrap">
+    <p class="supporters-title">
+      <span class="st-dot" aria-hidden="true"></span>
+      ご支援いただいた皆さま
+      <span class="st-count"><strong>19</strong> 社・個人</span>
+    </p>
+  </div>
+  <div class="marquee" role="list" aria-label="支援者ロゴ一覧">
+    <div class="marquee-track" id="supportersTrack">
+      <div class="supporter" role="listitem"><img src="assets/supporters/クレープの森.jpg" alt="クレープの森" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/レモンハート.jpg" alt="BAR LEMON HEART" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/showmarine.jpg" alt="Show Marine" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/wanabe.png" alt="WANABE MOVIE" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/松尾不動産.jpg" alt="松尾不動産 Matsuo Real Estate" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/大同生命.jpg" alt="大同生命" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/Kiratt.jpg" alt="Kiratt 歯のホワイトニング専門店" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/センターグループ.png" alt="CENTER GROUP" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/イナミ塩ラーメン.jpg" alt="イナミ塩ラーメン" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/niibunjaa.jpg" alt="沖縄そば にぃぶんじゃ〜" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/かめたろうやー.jpg" alt="かめたろうやー 羽地古民家" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/carmatch-naha-shuri.jpg" alt="車販戦隊カーマッチ 那覇首里店" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/sstyle.jpg" alt="S style" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/anshare-v2.jpg" alt="anshare" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/そらまめDRONE.jpg" alt="そらまめ DRONE" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/akipro.jpg" alt="Akipro." loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/searchmania.png" alt="SearchMania" loading="lazy"></div>
+      <div class="supporter" role="listitem"><img src="assets/supporters/chic.jpg" alt="Chic メンズ脱毛サロン" loading="lazy"></div>
+      <!-- ロゴなし・テキストのみ -->
+      <div class="supporter supporter-text" role="listitem"><span>B級酒場<br>FreeMoon</span></div>
+      <div class="supporter supporter-text" role="listitem"><span>（有）<br>鏡原酒販</span></div>
+      <div class="supporter supporter-text" role="listitem"><span>宮里 匠 様</span></div>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="supporters-note">※ 一部の皆さまはお名前のみの掲載となっております。掲載希望・差替えご希望は代表までご連絡ください。</p>
+  </div>
+</section>
 
 <!-- INTERMEZZO: ひとりの父親の記録 -->
 <section id="interlude" class="interlude" aria-labelledby="interlude-h">
