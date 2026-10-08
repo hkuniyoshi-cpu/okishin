@@ -527,9 +527,36 @@
     .uses { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; margin-bottom: 36px; }
     .use { background: rgba(255,255,255,.03); border: 1px solid var(--line); padding: 12px 14px; border-radius: 3px; font-size: 13px; color: var(--ink-s); line-height: 1.6; display: flex; gap: 8px; }
     .use strong { color: var(--ink); }
-    .cf-btn { display: inline-flex; align-items: center; gap: 10px; background: #e8541a; color: #fff; padding: 18px 44px; border-radius: 999px; font-family: var(--font-sans); font-size: 16px; font-weight: 700; letter-spacing: .06em; box-shadow: 0 6px 22px rgba(232,84,26,.35), inset 0 -3px 0 rgba(0,0,0,.14); transition: transform .2s, box-shadow .2s; }
-    .cf-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(232,84,26,.5), inset 0 -3px 0 rgba(0,0,0,.14); }
-    .cf-btn:active { transform: translateY(0); box-shadow: 0 3px 12px rgba(232,84,26,.32), inset 0 -1px 0 rgba(0,0,0,.14); }
+    /* クラファン終了御礼スタイル */
+    .cf-closed-lead { text-align: center; font-size: clamp(15px,1.8vw,17px); color: var(--ink); line-height: 1.95; margin-bottom: 32px; }
+    .cf-result-box {
+      max-width: 560px; margin: 0 auto 32px;
+      padding: 24px 28px;
+      background: var(--bg2);
+      border-top: 2px solid var(--ink);
+      border-bottom: 2px solid var(--ink);
+    }
+    .cf-result-row {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 10px 0;
+      border-bottom: 1px dotted var(--line);
+      font-family: var(--font-sans);
+    }
+    .cf-result-row:last-child { border-bottom: none; }
+    .cf-result-k { font-size: 13px; color: var(--ink-m); letter-spacing: .08em; }
+    .cf-result-v {
+      font-family: var(--font-serif); font-weight: 900;
+      font-size: clamp(18px,2.4vw,22px); color: var(--ink);
+      font-variant-numeric: tabular-nums; letter-spacing: .02em;
+    }
+    .cf-result-v.hl-red { color: var(--red); }
+    .cf-archive-link { text-align: center; margin-top: 24px; }
+    .cf-archive-link a {
+      font-family: var(--font-sans); font-size: 13px;
+      color: var(--ink-m); letter-spacing: .06em;
+      border-bottom: 1px solid var(--line); padding-bottom: 2px;
+    }
+    .cf-archive-link a:hover { color: var(--red); border-color: var(--red); }
     .cf-note { font-size: 12px; color: var(--ink-m); margin-top: 16px; line-height: 1.8; }
 
     /* OWNER */
@@ -1232,7 +1259,7 @@
       <a href="#recruit">参加募集</a>
       <a href="#charity">支援活動</a>
       <a href="#owner">代表</a>
-      <a href="https://camp-fire.jp/projects/964817/view" target="_blank" rel="noopener" class="nav-cta">応援する →</a>
+      <a href="#thanks" class="nav-cta">活動を見る →</a>
       <button class="theme-btn" id="themeBtn" aria-label="テーマ切替">☀ / ☾</button>
     </div>
   </div>
@@ -1398,7 +1425,7 @@
     </div>
     <div class="hero-btns rv rv-d3">
       <a href="#recruit" class="btn-red">参加者募集中 →</a>
-      <a href="https://camp-fire.jp/projects/964817/view" target="_blank" rel="noopener" class="btn-outline">Campfireで応援する</a>
+      <a href="#thanks" class="btn-outline">活動を見る ↓</a>
     </div>
   </div>
 
@@ -1662,7 +1689,7 @@
         </div>
         <div class="recruit-fee">
           参加費 <span class="big">5,000円</span><br>
-          <small>Campfireページより参加申し込み</small>
+          <small>※ 2027年日本一チャレンジ・2028年ギネス本番の参加申込方法は、確定次第こちらでご案内します。</small>
         </div>
       </div>
       <div class="rv rv-d2">
@@ -1732,34 +1759,48 @@
   </div>
 </section>
 
-<!-- CAMPFIRE -->
+<!-- CAMPFIRE (終了御礼) -->
 <section id="campfire" class="section">
   <div class="wrap">
     <div class="cf-inner">
       <div class="sec-head rv">
-        <p class="eyebrow">Crowdfunding / Campfire</p>
-        <h2>あなたの応援が、世界一への一歩に。</h2>
-        <div class="divider" style="margin:20px auto 0;"></div>
+        <p class="eyebrow">Crowdfunding ／ 2026 Report</p>
+        <h2>皆さまの応援、確かに届きました。</h2>
       </div>
       <div class="rv">
-        <div class="cf-goal-label">目標金額</div>
-        <div class="cf-goal">100万円</div>
-        <p class="cf-desc">2026年の153時間チャレンジを安全に実施し、2028年の世界記録挑戦へつなげる準備資金として活用します。</p>
-        <div class="uses">
-          <div class="use">🏢 <span><strong>運営費</strong>：会場費・人件費・電気水道・備品</span></div>
-          <div class="use">🔊 <span><strong>機材レンタル</strong>：音響・照明・カメラ・配信機材</span></div>
-          <div class="use">🎬 <span><strong>映像制作費</strong>：ライブ配信・撮影・編集</span></div>
-          <div class="use">📣 <span><strong>広報費</strong>：チラシ・ポスター・SNS広告</span></div>
-          <div class="use">🥤 <span><strong>安全管理費</strong>：飲料・軽食・休憩・救護体制</span></div>
-          <div class="use">📋 <span><strong>記録申請費</strong>：ルール調査・申請・認定に関する費用</span></div>
+        <p class="cf-closed-lead">2026年に実施したクラウドファンディングは、<br class="pc-only">皆さまのご支援により目標を達成し、無事終了いたしました。</p>
+        <div class="cf-result-box">
+          <div class="cf-result-row">
+            <span class="cf-result-k">目標金額</span>
+            <span class="cf-result-v">1,000,000 円</span>
+          </div>
+          <div class="cf-result-row">
+            <span class="cf-result-k">最終支援総額</span>
+            <span class="cf-result-v hl-red">1,012,556 円</span>
+          </div>
+          <div class="cf-result-row">
+            <span class="cf-result-k">達成率</span>
+            <span class="cf-result-v hl-red">101 %</span>
+          </div>
+          <div class="cf-result-row">
+            <span class="cf-result-k">支援者数</span>
+            <span class="cf-result-v">139 名</span>
+          </div>
+          <div class="cf-result-row">
+            <span class="cf-result-k">終了日</span>
+            <span class="cf-result-v">2026年9月</span>
+          </div>
         </div>
-        <a href="https://camp-fire.jp/projects/964817/view" target="_blank" rel="noopener" class="cf-btn">
-          🔥 Campfireで応援する（All-in方式）
-        </a>
-        <div class="cf-note">
-          この挑戦は私たちだけのものではありません。<br>
-          支えてくださる皆さまと共に、夢から未来へ、子どもたちの希望へとつなげていきます。
-        </div>
+        <p class="cf-note">
+          ご支援いただいた資金は、153時間チャレンジの運営費・機材費・広報費・<br class="pc-only">安全管理費などに活用し、無事完走することができました。<br>
+          <strong>この挑戦は私たちだけのものではありません。</strong><br>
+          支えてくださった皆さまと共に、2027年日本一・2028年ギネス世界記録へ、<br class="pc-only">子どもたちの未来へとつないでいきます。
+        </p>
+        <p class="cf-archive-link">
+          <a href="https://camp-fire.jp/projects/964817/view" target="_blank" rel="noopener">
+            Campfireプロジェクトページ（記録として公開）→
+          </a>
+        </p>
       </div>
     </div>
   </div>
@@ -1864,10 +1905,11 @@
             経路を表示 →
           </a>
         </dd>
-        <dt>Campfire</dt><dd>
+        <dt>Campfire（記録）</dt><dd>
           <a href="https://camp-fire.jp/projects/964817/view" target="_blank" rel="noopener" style="color:var(--gold-lt);">
             https://camp-fire.jp/projects/964817/view
           </a>
+          <br><small style="color:var(--ink-m);font-size:11px;">※ 2026年9月終了・101%達成。現在新規受付はしていません。</small>
         </dd>
       </dl>
       <div class="access-map">
@@ -1894,7 +1936,7 @@
       <a href="#roadmap">ロードマップ</a>
       <a href="#recruit">参加募集</a>
       <a href="#charity">支援活動</a>
-      <a href="#campfire">Campfire</a>
+      <a href="#campfire">達成報告</a>
       <a href="#owner">代表</a>
       <a href="#access">アクセス</a>
     </div>
