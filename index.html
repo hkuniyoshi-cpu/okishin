@@ -924,6 +924,131 @@
       .thanks-stamp { top: -24px; right: -8px; width: 82px; }
     }
 
+    /* ============================================
+       紙吹雪 (初回表示時の達成演出)
+       ============================================ */
+    .petal-layer {
+      position: absolute; inset: 0;
+      overflow: hidden; pointer-events: none;
+      z-index: 2;
+    }
+    .petal {
+      position: absolute;
+      top: -40px;
+      width: var(--size, 10px);
+      height: var(--size, 10px);
+      opacity: .88;
+      border-radius: 2px;
+      animation: petal-fall var(--dur, 4s) cubic-bezier(.3,.7,.4,1) var(--delay, 0s) forwards;
+      transform-origin: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,.08);
+    }
+    .petal:nth-child(odd) { border-radius: 50%; width: calc(var(--size, 10px) * .8); height: calc(var(--size, 10px) * .8); }
+    .petal:nth-child(3n) { border-radius: 2px 10px 2px 10px; }
+    @keyframes petal-fall {
+      0% { transform: translate3d(0, -40px, 0) rotate(0deg); opacity: 0; }
+      10% { opacity: .9; }
+      100% { transform: translate3d(var(--drift, 0), 95vh, 0) rotate(var(--rot, 360deg)); opacity: 0; }
+    }
+
+    /* ============================================
+       #interlude: 父親の記録 (hero前の人間モーメント)
+       ============================================ */
+    .interlude {
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      padding: clamp(56px,7vw,96px) 0;
+      position: relative;
+    }
+    .interlude-wrap {
+      max-width: 1080px; margin: 0 auto;
+      padding: 0 clamp(20px,4vw,40px);
+      display: grid;
+      grid-template-columns: minmax(280px, 1.1fr) 1.4fr;
+      gap: clamp(32px, 5vw, 72px);
+      align-items: center;
+    }
+    .interlude-figure {
+      margin: 0;
+      position: relative;
+    }
+    .interlude-figure img {
+      width: 100%; height: auto; display: block;
+      border-radius: 2px;
+      box-shadow:
+        0 1px 0 rgba(0,0,0,.05),
+        0 24px 48px -24px rgba(0,0,0,.25);
+      filter: saturate(.95) contrast(1.02);
+    }
+    .interlude-figure::before {
+      content: ''; position: absolute;
+      top: -8px; left: -8px; right: 16px; bottom: 16px;
+      border: 1px solid var(--gold-dk);
+      opacity: .4;
+      z-index: -1;
+    }
+    .interlude-figure figcaption {
+      margin-top: 12px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      letter-spacing: .14em;
+      color: var(--ink-m);
+      padding-left: 2px;
+    }
+    .interlude-eyebrow {
+      font-family: var(--font-sans); font-weight: 700;
+      font-size: 11px; letter-spacing: .32em;
+      color: var(--red);
+      margin: 0 0 24px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .interlude-quote {
+      font-family: var(--font-serif); font-weight: 700;
+      font-size: clamp(18px,2.2vw,24px);
+      color: var(--ink);
+      line-height: 2;
+      margin: 0 0 20px;
+      border: none;
+      padding: 0;
+      position: relative;
+      word-break: keep-all;
+    }
+    .interlude-quote p { margin: 0 0 14px; }
+    .interlude-quote p:last-child { margin-bottom: 0; }
+    .interlude-quote em {
+      font-style: normal;
+      color: var(--red);
+      font-weight: 900;
+      border-bottom: 2px solid rgba(196,18,48,.3);
+      padding-bottom: 2px;
+    }
+    .interlude-quote strong {
+      color: var(--gold-dk);
+      font-weight: 900;
+    }
+    .interlude-cite {
+      font-family: var(--font-sans);
+      font-size: 13px; color: var(--ink-m);
+      letter-spacing: .06em;
+      margin: 0 0 24px;
+    }
+    .interlude-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-sans); font-size: 14px; font-weight: 700;
+      color: var(--ink);
+      letter-spacing: .04em;
+      padding: 10px 0 4px;
+      border-bottom: 1.5px solid var(--ink);
+      transition: color .2s, border-color .2s, transform .2s;
+    }
+    .interlude-link:hover { color: var(--red); border-color: var(--red); transform: translateX(2px); }
+
+    @media (max-width: 760px) {
+      .interlude-wrap { grid-template-columns: 1fr; gap: 32px; }
+      .interlude-figure::before { right: 10px; bottom: 10px; }
+    }
+
     /* 達成2ブロック構成 */
     .thanks-achievements {
       display: grid;
@@ -1277,7 +1402,7 @@
       </div>
 
       <h2 class="thanks-h">
-        <span class="thanks-h-num">139<small>名</small></span>の皆さま、<br>
+        <span class="thanks-h-num" data-count-to="139">0<small>名</small></span>の皆さま、<br>
         <span class="thanks-h-main">本当にありがとうございました。</span>
       </h2>
 
@@ -1296,7 +1421,7 @@
             <span class="ledger-main-num">1,012,556</span><span class="ledger-main-unit">円</span>
           </div>
           <ul class="ledger-list">
-            <li><span>支援者数</span><strong>139 名</strong></li>
+            <li><span>支援者数</span><strong><span data-count-to="139">0</span> 名</strong></li>
             <li><span>達成率</span><strong class="hl-red">101 %</strong></li>
             <li><span>方式</span><strong>Campfire ／ All-in</strong></li>
           </ul>
@@ -1392,6 +1517,27 @@
         </div>
         <p class="supporters-note">※ 一部の皆さまはお名前のみの掲載となっております。掲載希望・差替えご希望は代表までご連絡ください。</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERMEZZO: ひとりの父親の記録 (人の顔を先に見せる) -->
+<section id="interlude" class="interlude" aria-labelledby="interlude-h">
+  <div class="interlude-wrap">
+    <figure class="interlude-figure rv">
+      <img src="assets/owner-family.jpg" alt="父子で二輪日本一周 (2020年)" loading="lazy">
+      <figcaption>2020年、父と息子の二輪日本一周</figcaption>
+    </figure>
+    <div class="interlude-copy">
+      <p class="interlude-eyebrow">A FATHER'S STORY ／ ひとりの父親の記録</p>
+      <blockquote class="interlude-quote rv">
+        <p>「<em>この子を大学まで出して、社会に送り出す。</em>」<br>
+          それだけが、妻を亡くした自分に残された約束でした。</p>
+        <p>でも、沖縄には同じ想いを抱える家庭が、確かにいる。<br>
+          <strong>だから、歌うことを決めました。</strong></p>
+      </blockquote>
+      <p class="interlude-cite">— 當眞 嗣剛（沖縄進学支援会オキシン 代表）</p>
+      <a href="#owner" class="interlude-link">物語を全文読む →</a>
     </div>
   </div>
 </section>
@@ -2003,6 +2149,97 @@
       track.appendChild(clone);
     });
   })();
+
+  /* 数字カウントアップ (スクロールで要素が見えた瞬間) */
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var fmtThousands = function(n){ return Math.round(n).toLocaleString('en-US'); };
+    var fmtPlain = function(n){ return Math.round(n).toString(); };
+    function run(el){
+      var to = parseFloat(el.getAttribute('data-count-to'));
+      var fmt = el.getAttribute('data-format') === 'thousands' ? fmtThousands : fmtPlain;
+      // 小タグがあれば保持
+      var smallEl = el.querySelector('small');
+      var smallHTML = smallEl ? smallEl.outerHTML : '';
+      var start = performance.now();
+      var dur = Math.min(1800, Math.max(900, to > 1000 ? 1800 : 1200));
+      function step(now){
+        var p = Math.min(1, (now - start) / dur);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.firstChild && (el.firstChild.nodeType === 3 ? (el.firstChild.data = fmt(to * eased)) : null);
+        // first child として追加した場合に備えて textContent 的な処理
+        if (!el.firstChild || el.firstChild.nodeType !== 3) {
+          el.innerHTML = fmt(to * eased) + smallHTML;
+        }
+        if (p < 1) requestAnimationFrame(step);
+      }
+      // 初期化: テキストを 0 にして small を再付加
+      el.innerHTML = '0' + smallHTML;
+      requestAnimationFrame(step);
+    }
+    var seen = new WeakSet();
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('[data-count-to]').forEach(run);
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting && !seen.has(e.target)) {
+          seen.add(e.target);
+          run(e.target);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    document.querySelectorAll('[data-count-to]').forEach(function(el){ io.observe(el); });
+  })();
+
+  /* 達成バナー初回表示時の紙吹雪 (sessionStorage で1回のみ) */
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    try { if (sessionStorage.getItem('okishin-confetti')) return; } catch(e){}
+    var thanks = document.getElementById('thanks');
+    if (!thanks) return;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        io.disconnect();
+        try { sessionStorage.setItem('okishin-confetti', '1'); } catch(e){}
+        spawnPetals();
+      });
+    }, { threshold: 0.15 });
+    io.observe(thanks);
+    function spawnPetals(){
+      var layer = document.createElement('div');
+      layer.className = 'petal-layer';
+      layer.setAttribute('aria-hidden','true');
+      thanks.appendChild(layer);
+      var colors = ['#c9a84c','#f0cc6e','#c41230','#e07a1e','#f7a445'];
+      var count = 54;
+      for (var i=0;i<count;i++){
+        var p = document.createElement('span');
+        p.className = 'petal';
+        var left = Math.random()*100;
+        var size = 6 + Math.random()*10;
+        var delay = Math.random()*1.5;
+        var dur = 3.5 + Math.random()*2.5;
+        var rot = (Math.random()*2 - 1) * 720;
+        var drift = (Math.random()*2 - 1) * 180;
+        p.style.cssText =
+          'left:' + left + '%;' +
+          '--size:' + size + 'px;' +
+          '--delay:' + delay + 's;' +
+          '--dur:' + dur + 's;' +
+          '--rot:' + rot + 'deg;' +
+          '--drift:' + drift + 'px;' +
+          'background:' + colors[i % colors.length] + ';';
+        layer.appendChild(p);
+      }
+      setTimeout(function(){ layer.remove(); }, 8000);
+    }
+  })();
+
+  /* サイドナビはCodex指摘「既存ナビと重複」で廃止 */
 
   var els = document.querySelectorAll('.rv');
   if ('IntersectionObserver' in window) {
