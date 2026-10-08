@@ -156,9 +156,8 @@
     .nav-links { display: flex; gap: 28px; align-items: center; font-size: 13px; }
     .nav-links a { color: var(--ink-s); transition: color .2s; }
     .nav-links a:hover { color: var(--gold-lt); }
-    .nav-cta { background: var(--red); color: #fff !important; padding: 9px 22px; border-radius: 999px; font-weight: 700; letter-spacing: .06em; font-size: 13px; box-shadow: 0 4px 14px rgba(196,18,48,.28); transition: transform .2s, box-shadow .2s !important; }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(196,18,48,.4); }
-    .nav-cta:hover { background: var(--red-lt) !important; }
+    .nav-cta { background: var(--red); color: #fff !important; padding: 9px 22px; border-radius: 999px; font-weight: 700; letter-spacing: .06em; font-size: 13px; box-shadow: 0 4px 14px rgba(196,18,48,.28); transition: transform .2s, box-shadow .2s, background .2s !important; border: none; cursor: pointer; font-family: inherit; }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(196,18,48,.4); background: var(--red-lt) !important; }
     .theme-btn { background: none; border: 1px solid var(--line); border-radius: 3px; color: var(--ink-m); font-size: 13px; padding: 5px 10px; cursor: pointer; font-family: var(--font-sans); }
     .theme-btn:hover { border-color: var(--gold); color: var(--gold); }
 
@@ -783,15 +782,88 @@
     /* ============================================
        達成報告バナー #thanks  (新聞号外紙面スタイル)
        ============================================ */
-    #thanks {
+    /* #thanks はモーダル化。デフォルト非表示 */
+    #thanks.report-modal {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 999;
       background: var(--bg);
-      border-bottom: 1px solid var(--line);
-      padding: clamp(48px,8vw,120px) 0 clamp(44px,5vw,64px) !important;
-      margin-top: 72px;
-      position: relative;
+      padding: clamp(72px,8vw,96px) 0 clamp(40px,5vw,64px) !important;
+      margin: 0;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
     }
-    @media (max-width: 540px) {
-      #thanks { margin-top: 60px; padding-top: 36px !important; }
+    body.report-open #thanks.report-modal { display: block; animation: modalIn .4s cubic-bezier(.22,1,.36,1); }
+    body.report-open { overflow: hidden; }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .report-close {
+      position: fixed; top: 20px; right: 20px;
+      z-index: 1001;
+      background: var(--ink); color: #fff;
+      border: none; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-family: var(--font-sans); font-size: 13px; font-weight: 700; letter-spacing: .08em;
+      box-shadow: 0 6px 20px rgba(0,0,0,.3);
+      transition: transform .18s, background .18s;
+    }
+    .report-close svg { opacity: .85; }
+    .report-close:hover { background: var(--red); transform: scale(1.05); }
+
+    /* ヒーロー直下のトリガーバー */
+    .report-trigger-bar {
+      position: relative;
+      background: linear-gradient(90deg, rgba(201,168,76,.08) 0%, rgba(196,18,48,.06) 100%);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+      z-index: 2;
+    }
+    .rt-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 clamp(20px,4vw,40px);
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 24px; flex-wrap: wrap;
+    }
+    .rt-head { display: flex; align-items: center; gap: 14px; flex: 1 1 auto; min-width: 0; flex-wrap: wrap; }
+    .rt-badge {
+      display: inline-block;
+      background: var(--red); color: #fff;
+      font-family: var(--font-sans); font-weight: 900; font-size: 11px;
+      letter-spacing: .14em;
+      padding: 5px 12px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+    .rt-lead {
+      font-family: var(--font-serif);
+      font-size: clamp(13px,1.5vw,16px);
+      color: var(--ink);
+      line-height: 1.6;
+    }
+    .rt-lead strong { color: var(--red); font-weight: 900; }
+    .rt-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--ink); color: #fff;
+      border: none; cursor: pointer;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-family: var(--font-sans); font-size: 14px; font-weight: 700; letter-spacing: .08em;
+      box-shadow: 0 4px 14px rgba(0,0,0,.2);
+      transition: transform .2s, box-shadow .2s, background .2s;
+      flex-shrink: 0;
+    }
+    .rt-btn:hover { background: var(--red); transform: translateY(-1px); box-shadow: 0 8px 20px rgba(196,18,48,.3); }
+    .rt-btn svg { transition: transform .2s; }
+    .rt-btn:hover svg { transform: translateX(3px); }
+    @media (max-width: 640px) {
+      .rt-inner { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .rt-btn { width: 100%; justify-content: center; }
+      .report-close { top: 12px; right: 12px; padding: 8px 14px; font-size: 12px; }
     }
     .thanks-inner { max-width: 1100px; margin: 0 auto; text-align: left; }
     .thanks-dateline {
@@ -1418,14 +1490,18 @@
       <a href="#recruit">参加募集</a>
       <a href="#charity">支援活動</a>
       <a href="#owner">代表</a>
-      <a href="#thanks" class="nav-cta">活動を見る →</a>
+      <button type="button" class="nav-cta" data-report-open aria-haspopup="dialog" aria-controls="thanks">活動報告 →</button>
       <button class="theme-btn" id="themeBtn" aria-label="テーマ切替">☀ / ☾</button>
     </div>
   </div>
 </nav>
 
-<!-- 達成報告バナー -->
-<section id="thanks" class="section">
+<!-- 達成報告 (モーダル表示: ヒーロー下のトリガーから開く) -->
+<section id="thanks" class="section report-modal" aria-hidden="true" aria-labelledby="thanks-h">
+  <button class="report-close" type="button" aria-label="閉じる" data-report-close>
+    <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 4 L20 20 M20 4 L4 20" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+    <span>閉じる</span>
+  </button>
   <div class="wrap">
     <div class="thanks-inner rv">
       <!-- 新聞号外風ヘッダ -->
@@ -1578,26 +1654,6 @@
   </div>
 </section>
 
-<!-- INTERMEZZO: ひとりの父親の記録 (人の顔を先に見せる) -->
-<section id="interlude" class="interlude" aria-labelledby="interlude-h">
-  <div class="interlude-wrap">
-    <figure class="interlude-figure rv">
-      <img src="assets/owner-toma.jpg" alt="當眞嗣剛 — 沖縄進学支援会オキシン代表" loading="lazy">
-    </figure>
-    <div class="interlude-copy">
-      <p class="interlude-eyebrow">A FATHER'S STORY ／ ひとりの父親の記録</p>
-      <blockquote class="interlude-quote rv">
-        <p>「<em>この子を大学まで出して、社会に送り出す。</em>」<br>
-          それだけが、妻を亡くした自分に残された約束でした。</p>
-        <p>でも、沖縄には同じ想いを抱える家庭が、確かにいる。<br>
-          <strong>だから、歌うことを決めました。</strong></p>
-      </blockquote>
-      <p class="interlude-cite">— 當眞 嗣剛（沖縄進学支援会オキシン 代表）</p>
-      <a href="#owner" class="interlude-link">物語を全文読む →</a>
-    </div>
-  </div>
-</section>
-
 <!-- HERO -->
 <section id="hero" class="section">
   <div class="hero-bg" aria-hidden="true"></div>
@@ -1627,10 +1683,43 @@
     </div>
     <div class="hero-btns rv rv-d3">
       <a href="#recruit" class="btn-red">参加者募集中 →</a>
-      <a href="#thanks" class="btn-outline">活動を見る ↓</a>
+      <a href="#story" class="btn-outline">挑戦の流れを見る ↓</a>
     </div>
   </div>
+</section>
 
+<!-- 達成報告 モーダルトリガー (ヒーロー直下) -->
+<aside class="report-trigger-bar rv" aria-label="2026年活動報告">
+  <div class="rt-inner">
+    <div class="rt-head">
+      <span class="rt-badge">📣 2026 REPORT</span>
+      <span class="rt-lead">皆さまのご支援で、<strong>クラファン101%達成</strong>と<strong>153時間カラオケ完走</strong>を果たしました</span>
+    </div>
+    <button type="button" class="rt-btn" data-report-open aria-haspopup="dialog" aria-controls="thanks">
+      活動報告を見る
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+</aside>
+
+<!-- INTERMEZZO: ひとりの父親の記録 -->
+<section id="interlude" class="interlude" aria-labelledby="interlude-h">
+  <div class="interlude-wrap">
+    <figure class="interlude-figure rv">
+      <img src="assets/owner-toma.jpg" alt="當眞嗣剛 — 沖縄進学支援会オキシン代表" loading="lazy">
+    </figure>
+    <div class="interlude-copy">
+      <p class="interlude-eyebrow">A FATHER'S STORY ／ ひとりの父親の記録</p>
+      <blockquote class="interlude-quote rv">
+        <p>「<em>この子を大学まで出して、社会に送り出す。</em>」<br>
+          それだけが、妻を亡くした自分に残された約束でした。</p>
+        <p>でも、沖縄には同じ想いを抱える家庭が、確かにいる。<br>
+          <strong>だから、歌うことを決めました。</strong></p>
+      </blockquote>
+      <p class="interlude-cite">— 當眞 嗣剛（沖縄進学支援会オキシン 代表）</p>
+      <a href="#owner" class="interlude-link">物語を全文読む →</a>
+    </div>
+  </div>
 </section>
 
 <!-- STORY / JOURNEY -->
@@ -2149,6 +2238,37 @@
   makeTicker(new Date('2027-09-15T09:00:00Z'), ['cd3-d','cd3-h','cd3-m','cd3-s'], true);
   /* 2028 countdown: 2028-09-01 18:00 JST — ギネス */
   makeTicker(new Date('2028-09-01T09:00:00Z'), ['cd2-d','cd2-h','cd2-m','cd2-s'], true);
+
+  /* 活動報告モーダル (トリガー/ESC/オーバーレイクリックで開閉) */
+  (function(){
+    var modal = document.getElementById('thanks');
+    if (!modal) return;
+    function open(){
+      document.body.classList.add('report-open');
+      modal.setAttribute('aria-hidden','false');
+      modal.scrollTop = 0;
+      var closeBtn = modal.querySelector('.report-close');
+      if (closeBtn) closeBtn.focus();
+    }
+    function close(){
+      document.body.classList.remove('report-open');
+      modal.setAttribute('aria-hidden','true');
+    }
+    document.querySelectorAll('[data-report-open]').forEach(function(btn){
+      btn.addEventListener('click', function(e){ e.preventDefault(); open(); });
+    });
+    document.querySelectorAll('[data-report-close]').forEach(function(btn){
+      btn.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && document.body.classList.contains('report-open')) close();
+    });
+    /* ハッシュ #thanks でもモーダル開くようにサポート */
+    if (location.hash === '#thanks') { setTimeout(open, 100); }
+    window.addEventListener('hashchange', function(){
+      if (location.hash === '#thanks') open();
+    });
+  })();
 
   /* マーキー無限ループ: 子要素を複製してシームレスに流す */
   (function(){
