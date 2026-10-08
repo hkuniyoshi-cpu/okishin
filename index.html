@@ -910,18 +910,21 @@
     .ledger-list .hl-gold { color: var(--gold-dk); }
     .thanks-stamp {
       position: absolute;
-      top: -46px; right: -16px;
-      width: clamp(96px,10vw,124px); height: auto;
-      transform: rotate(-14deg);
-      filter: drop-shadow(0 6px 14px rgba(196,18,48,.35)) drop-shadow(0 0 2px rgba(255,255,255,.6));
+      width: clamp(84px,9vw,110px); height: auto;
+      filter: drop-shadow(0 6px 14px rgba(0,0,0,.25)) drop-shadow(0 0 2px rgba(255,255,255,.6));
       animation: stampPop 1s cubic-bezier(.22,1.6,.36,1) .4s both;
       z-index: 3;
+    }
+    .thanks-stamp-l { top: -42px; left: calc(50% - 14vw); transform: rotate(-16deg); }
+    .thanks-stamp-r { top: -42px; right: -14px; transform: rotate(13deg); animation-delay: .6s; }
+    @media (max-width: 820px) {
+      .thanks-stamp-l { top: -22px; left: auto; right: -8px; width: 72px; }
+      .thanks-stamp-r { display: none; }
     }
     @media (max-width: 820px) {
       .thanks-ledger { grid-template-columns: 1fr; gap: 24px; padding: 24px 0; }
       .ledger-sep { display: none; }
       .ledger-col + .ledger-col { border-top: 1px solid var(--line); padding-top: 24px; }
-      .thanks-stamp { top: -24px; right: -8px; width: 82px; }
     }
 
     /* ============================================
@@ -1444,13 +1447,20 @@
           </ul>
         </div>
 
-        <!-- 右上に落款スタンプ -->
-        <svg class="thanks-stamp" viewBox="0 0 140 140" aria-hidden="true">
+        <!-- 2つの達成スタンプ (左: CF赤 / 右: カラオケ金) -->
+        <svg class="thanks-stamp thanks-stamp-l" viewBox="0 0 140 140" aria-hidden="true">
           <circle cx="70" cy="70" r="66" fill="#c41230" opacity=".94"/>
           <circle cx="70" cy="70" r="60" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>
           <circle cx="70" cy="70" r="56" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 4" opacity=".55"/>
           <text x="70" y="54" text-anchor="middle" font-family="serif" font-size="30" font-weight="900" fill="#fff" letter-spacing="2">達</text>
           <text x="70" y="92" text-anchor="middle" font-family="serif" font-size="30" font-weight="900" fill="#fff" letter-spacing="2">成</text>
+        </svg>
+        <svg class="thanks-stamp thanks-stamp-r" viewBox="0 0 140 140" aria-hidden="true">
+          <circle cx="70" cy="70" r="66" fill="#c9a84c" opacity=".95"/>
+          <circle cx="70" cy="70" r="60" fill="none" stroke="#fff" stroke-width="2" opacity=".5"/>
+          <circle cx="70" cy="70" r="56" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 4" opacity=".55"/>
+          <text x="70" y="54" text-anchor="middle" font-family="serif" font-size="30" font-weight="900" fill="#fff" letter-spacing="2">完</text>
+          <text x="70" y="92" text-anchor="middle" font-family="serif" font-size="30" font-weight="900" fill="#fff" letter-spacing="2">走</text>
         </svg>
       </div>
 
@@ -1504,7 +1514,7 @@
             <div class="supporter" role="listitem"><img src="assets/supporters/かめたろうやー.jpg" alt="かめたろうやー 羽地古民家" loading="lazy"></div>
             <div class="supporter" role="listitem"><img src="assets/supporters/carmatch-naha-shuri.jpg" alt="車販戦隊カーマッチ 那覇首里店" loading="lazy"></div>
             <div class="supporter" role="listitem"><img src="assets/supporters/sstyle.jpg" alt="S style" loading="lazy"></div>
-            <div class="supporter" role="listitem"><img src="assets/supporters/anshare.jpg" alt="anshare" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/anshare-v2.jpg" alt="anshare" loading="lazy"></div>
             <div class="supporter" role="listitem"><img src="assets/supporters/そらまめDRONE.jpg" alt="そらまめ DRONE" loading="lazy"></div>
             <div class="supporter" role="listitem"><img src="assets/supporters/akipro.jpg" alt="Akipro." loading="lazy"></div>
             <div class="supporter" role="listitem"><img src="assets/supporters/searchmania.png" alt="SearchMania" loading="lazy"></div>
