@@ -674,8 +674,12 @@
       .rules-grid { grid-template-columns: 1fr 1fr; }
       .recruit-inner { grid-template-columns: 1fr; }
       .charity-grid { grid-template-columns: 1fr; }
-      .owner-wrap { grid-template-columns: 1fr; }
-      .owner-ph { aspect-ratio: 16/9; }
+      .owner-wrap { grid-template-columns: 1fr; gap: 24px; }
+      .owner-ph-sticky { position: static !important; max-width: 280px; margin: 0 auto; }
+      .owner-ph { aspect-ratio: 3/4; }
+      .owner-ph-caption { text-align: center; }
+      /* 本文中の家族写真も縦長を抑える */
+      .story-figure img { max-height: 320px; object-fit: cover; object-position: center; }
       .ev-grid { grid-template-columns: 1fr; }
       .uses { grid-template-columns: 1fr; }
       .access-grid { grid-template-columns: 1fr; }
@@ -686,6 +690,8 @@
       .rules-grid { grid-template-columns: 1fr; }
       .rule { border-right: none; border-bottom: 1px solid var(--line); }
       .cd-board { gap: 6px; padding: 14px; }
+      .owner-ph-sticky { max-width: 220px; }
+      .story-figure img { max-height: 240px; }
     }
     @media (prefers-reduced-motion: reduce) {
       *, .rv { transition: none !important; animation: none !important; }
