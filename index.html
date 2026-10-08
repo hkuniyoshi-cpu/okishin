@@ -435,6 +435,8 @@
     .rv-mid { background: var(--bg3); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: center; }
     .rv-vs { font-family: var(--font-serif); font-size: 28px; font-weight: 900; color: var(--gold-dk); }
     .rules-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 40px; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+    .rules-note { max-width: 820px; margin: 16px auto 0; font-size: 12px; color: var(--ink-m); line-height: 1.75; letter-spacing: .04em; text-align: center; }
+    .rules-note em { font-style: normal; font-weight: 700; color: var(--gold-dk); }
     .rule { padding: 20px 22px; background: var(--bg); border-right: 1px solid var(--line); }
     .rule:nth-child(3n) { border-right: none; }
     .rule h4 { font-size: 13px; font-weight: 700; color: var(--gold-lt); margin-bottom: 6px; }
@@ -809,6 +811,70 @@
     }
     .thanks-stat-accent .thanks-stat-value { color: var(--red); }
     .thanks-stat-unit { font-size: .55em; margin-left: 2px; font-weight: 700; opacity: .85; }
+
+    /* 達成2ブロック構成 */
+    .thanks-achievements {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto 44px;
+    }
+    .achievement {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px 24px;
+      box-shadow: 0 6px 24px rgba(0,0,0,.05);
+      text-align: center;
+      display: flex; flex-direction: column; gap: 18px;
+    }
+    .achievement.crowdfund {
+      border-top: 4px solid var(--red);
+      background: linear-gradient(180deg, rgba(196,18,48,.04) 0%, var(--bg) 60%);
+    }
+    .achievement.karaoke {
+      border-top: 4px solid var(--gold);
+      background: linear-gradient(180deg, rgba(201,168,76,.06) 0%, var(--bg) 60%);
+    }
+    .achievement-eyebrow {
+      display: inline-block;
+      font-family: var(--font-sans); font-weight: 900;
+      font-size: 10px; letter-spacing: .22em;
+      padding-bottom: 4px;
+      color: var(--ink-m);
+    }
+    .achievement.crowdfund .achievement-eyebrow { color: var(--red); }
+    .achievement.karaoke .achievement-eyebrow { color: var(--gold-dk); }
+    .achievement-title {
+      font-family: var(--font-serif); font-weight: 900;
+      font-size: clamp(18px,2.3vw,24px);
+      color: var(--ink);
+      margin: 6px 0 4px;
+      line-height: 1.4;
+      word-break: keep-all;
+    }
+    .achievement-period {
+      font-family: var(--font-sans); font-size: 11px;
+      color: var(--ink-m); letter-spacing: .05em; margin: 0;
+    }
+    .achievement-stats {
+      display: grid; grid-template-columns: repeat(3,1fr); gap: 10px;
+    }
+    .ach-stat {
+      padding: 10px 6px;
+      background: rgba(0,0,0,.02);
+      border-radius: 10px;
+    }
+    .ach-stat-label { font-size: 10px; letter-spacing: .14em; color: var(--ink-m); font-weight: 700; margin-bottom: 4px; font-family: var(--font-sans); }
+    .ach-stat-value {
+      font-family: var(--font-serif); font-weight: 900;
+      font-size: clamp(18px,2.4vw,26px);
+      color: var(--ink); line-height: 1.1;
+    }
+    .ach-stat-unit { font-size: .55em; margin-left: 2px; font-weight: 700; opacity: .85; }
+    .ach-stat-accent .ach-stat-value { color: var(--red); }
+    .ach-stat-accent-gold .ach-stat-value { color: var(--gold-dk); }
     .thanks-steps {
       display: flex; justify-content: center; align-items: stretch;
       flex-wrap: wrap; gap: 8px;
@@ -921,6 +987,8 @@
     @media (max-width: 720px) {
       #thanks { margin-top: 60px; }
       .thanks-stats { grid-template-columns: repeat(2, 1fr); }
+      .thanks-achievements { grid-template-columns: 1fr; }
+      .achievement { padding: 22px 18px; }
       .thanks-steps { gap: 6px; }
       .thanks-step { flex-basis: calc(33% - 20px); padding: 14px 8px; }
       .thanks-step-arrow { display: none; }
@@ -1040,31 +1108,61 @@
     <div class="thanks-inner rv">
       <div class="thanks-badge" aria-hidden="true">
         <span class="thanks-ribbon-l">🌾</span>
-        <span class="thanks-badge-txt">目標 100万円 達成！／153時間カラオケ 完走！</span>
+        <span class="thanks-badge-txt">2つの目標を達成しました</span>
         <span class="thanks-ribbon-r">🌾</span>
       </div>
       <h2 class="thanks-h">
         <span class="thanks-h-num">139名</span>の皆さま、<br>
         <span class="thanks-h-main">本当にありがとうございました。</span>
       </h2>
-      <p class="thanks-sub">皆さまのご支援と歌声で、2026年9月21日〜28日の<br class="pc-only">「153時間連続カラオケチャレンジ」を完走することができました。</p>
+      <p class="thanks-sub">皆さまのご支援と歌声で、<br class="sp-only">クラウドファンディングと153時間連続カラオケ、<br class="pc-only">2つの目標を達成することができました。</p>
 
-      <div class="thanks-stats rv rv-d1">
-        <div class="thanks-stat">
-          <div class="thanks-stat-label">支援者数</div>
-          <div class="thanks-stat-value">139<span class="thanks-stat-unit">名</span></div>
+      <!-- 達成実績 2ブロック構成 -->
+      <div class="thanks-achievements rv rv-d1">
+        <!-- ① クラウドファンディング -->
+        <div class="achievement crowdfund">
+          <div class="achievement-head">
+            <span class="achievement-eyebrow">CROWDFUNDING</span>
+            <h3 class="achievement-title">目標100万円を達成！</h3>
+            <p class="achievement-period">Campfire ／ All-in方式</p>
+          </div>
+          <div class="achievement-stats">
+            <div class="ach-stat">
+              <div class="ach-stat-label">支援者数</div>
+              <div class="ach-stat-value">139<span class="ach-stat-unit">名</span></div>
+            </div>
+            <div class="ach-stat">
+              <div class="ach-stat-label">支援総額</div>
+              <div class="ach-stat-value">1,012,556<span class="ach-stat-unit">円</span></div>
+            </div>
+            <div class="ach-stat ach-stat-accent">
+              <div class="ach-stat-label">達成率</div>
+              <div class="ach-stat-value">101<span class="ach-stat-unit">%</span></div>
+            </div>
+          </div>
         </div>
-        <div class="thanks-stat">
-          <div class="thanks-stat-label">支援総額</div>
-          <div class="thanks-stat-value">1,012,556<span class="thanks-stat-unit">円</span></div>
-        </div>
-        <div class="thanks-stat thanks-stat-accent">
-          <div class="thanks-stat-label">目標達成率</div>
-          <div class="thanks-stat-value">101<span class="thanks-stat-unit">%</span></div>
-        </div>
-        <div class="thanks-stat">
-          <div class="thanks-stat-label">連続歌唱</div>
-          <div class="thanks-stat-value">153<span class="thanks-stat-unit">時間</span></div>
+
+        <!-- ② 153時間連続カラオケ -->
+        <div class="achievement karaoke">
+          <div class="achievement-head">
+            <span class="achievement-eyebrow">OKINAWA-ICHI CHALLENGE</span>
+            <h3 class="achievement-title">153時間カラオケを完走！</h3>
+            <p class="achievement-period">2026年9月21日（月）18:00 〜 9月28日（日）3:00</p>
+          </div>
+          <div class="achievement-stats">
+            <div class="ach-stat ach-stat-accent-gold">
+              <div class="ach-stat-label">連続歌唱</div>
+              <div class="ach-stat-value">153<span class="ach-stat-unit">時間</span></div>
+            </div>
+            <div class="ach-stat">
+              <div class="ach-stat-label">期間</div>
+              <div class="ach-stat-value">7<span class="ach-stat-unit">日間</span></div>
+            </div>
+            <div class="ach-stat">
+              <div class="ach-stat-label">結果</div>
+              <div class="ach-stat-value" style="font-size:.6em;line-height:1.3;color:var(--gold-dk);">沖縄一<br>達成</div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -1339,6 +1437,7 @@
       <div class="rule"><h4>📋 書類一式</h4><p>歌唱ログ・タイムキーパー声明・スチュワード声明など多数。</p></div>
       <div class="rule"><h4>🏢 ギネス公式申請</h4><p>法人としての使用権取得・認定審査。現在準備進行中。</p></div>
     </div>
+    <p class="rules-note">※ 上記は過去のギネスマラソンカラオケ記録に関する一般的な公開情報です。細かい秒数・回数・人数等の最終ルールは、ギネス公式申請時に承認される <em>Record Attempt Application</em> に基づき確定します。</p>
   </div>
 </section>
 
