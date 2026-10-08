@@ -341,12 +341,22 @@
       box-shadow: 0 6px 24px rgba(201,168,76,.14);
       position: relative;
     }
-    #cd-section.done .cd-done-badge {
-      background: var(--gold); color: #fff;
-      font-family: var(--font-sans); font-weight: 900;
-      font-size: 13px; letter-spacing: .14em;
-      padding: 7px 18px; border-radius: 999px;
-      box-shadow: 0 4px 14px rgba(201,168,76,.4);
+    #cd-section.done .cd-done-stamp {
+      position: absolute;
+      top: -24px; right: -14px;
+      width: clamp(100px,13vw,140px); height: auto;
+      transform: rotate(-14deg);
+      filter: drop-shadow(0 6px 14px rgba(196,18,48,.35)) drop-shadow(0 0 2px rgba(255,255,255,.6));
+      animation: stampPop 1s cubic-bezier(.22,1.6,.36,1) .3s both;
+      z-index: 2;
+    }
+    @keyframes stampPop {
+      0%   { transform: rotate(0deg) scale(0); opacity: 0; }
+      60%  { transform: rotate(-20deg) scale(1.15); opacity: 1; }
+      100% { transform: rotate(-14deg) scale(1); opacity: 1; }
+    }
+    @media (max-width: 540px) {
+      #cd-section.done .cd-done-stamp { top: -12px; right: -4px; width: 86px; }
     }
     #cd-section.done .cd-done-main {
       font-family: var(--font-serif); font-weight: 900;
@@ -1315,7 +1325,13 @@
       <span class="sr-only">153時間チャレンジ</span>
     </div>
     <div class="cd-done-board" role="status" aria-live="polite">
-      <div class="cd-done-badge">✓ 完走</div>
+      <svg class="cd-done-stamp" viewBox="0 0 140 140" aria-hidden="true">
+        <circle cx="70" cy="70" r="66" fill="#c41230" opacity=".92"/>
+        <circle cx="70" cy="70" r="60" fill="none" stroke="#fff" stroke-width="2" opacity=".55"/>
+        <circle cx="70" cy="70" r="56" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="3 4" opacity=".6"/>
+        <text x="70" y="54" text-anchor="middle" font-family="serif" font-size="30" font-weight="900" fill="#fff" letter-spacing="2">達</text>
+        <text x="70" y="92" text-anchor="middle" font-family="serif" font-size="30" font-weight="900" fill="#fff" letter-spacing="2">成</text>
+      </svg>
       <div class="cd-done-main">153時間、歌い切りました！</div>
       <div class="cd-done-sub">皆さまの支援と歌声に、心から感謝します</div>
     </div>
@@ -1798,6 +1814,18 @@
   makeTicker(new Date('2027-09-15T09:00:00Z'), ['cd3-d','cd3-h','cd3-m','cd3-s'], true);
   /* 2028 countdown: 2028-09-01 18:00 JST — ギネス */
   makeTicker(new Date('2028-09-01T09:00:00Z'), ['cd2-d','cd2-h','cd2-m','cd2-s'], true);
+
+  /* マーキー無限ループ: 子要素を複製してシームレスに流す */
+  (function(){
+    var track = document.getElementById('supportersTrack');
+    if (!track) return;
+    var items = Array.from(track.children);
+    items.forEach(function(el){
+      var clone = el.cloneNode(true);
+      clone.setAttribute('aria-hidden','true');
+      track.appendChild(clone);
+    });
+  })();
 
   var els = document.querySelectorAll('.rv');
   if ('IntersectionObserver' in window) {
