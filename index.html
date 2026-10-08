@@ -330,6 +330,37 @@
     .cd2-colon { font-family: "Courier New",monospace; font-size: clamp(28px,4vw,48px); color: rgba(196,18,48,.5); line-height: 1; animation: colon-blink .9s step-start infinite; }
     .cd2-date { text-align: center; margin-top: 20px; font-size: 13px; color: var(--ink-m); letter-spacing: .08em; }
 
+    /* 2026 完走表示 (達成バージョン) */
+    #cd-section.done .cd-done-board {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(201,168,76,.15), rgba(201,168,76,.05));
+      border: 2px solid var(--gold); border-radius: 18px;
+      padding: 28px 24px;
+      max-width: 780px; margin: 0 auto;
+      box-shadow: 0 6px 24px rgba(201,168,76,.14);
+      position: relative;
+    }
+    #cd-section.done .cd-done-badge {
+      background: var(--gold); color: #fff;
+      font-family: var(--font-sans); font-weight: 900;
+      font-size: 13px; letter-spacing: .14em;
+      padding: 7px 18px; border-radius: 999px;
+      box-shadow: 0 4px 14px rgba(201,168,76,.4);
+    }
+    #cd-section.done .cd-done-main {
+      font-family: var(--font-serif); font-weight: 900;
+      font-size: clamp(22px,3.4vw,32px);
+      color: var(--gold-dk);
+      line-height: 1.4;
+      margin-top: 6px;
+      word-break: keep-all;
+    }
+    #cd-section.done .cd-done-sub {
+      font-family: var(--font-sans); font-size: 13px;
+      color: var(--ink-s); letter-spacing: .06em;
+    }
+
     /* COUNTDOWN 2026 (gold) */
     #cd-section { background: linear-gradient(135deg, rgba(201,168,76,.10) 0%, var(--bg) 60%); border-top: 3px solid var(--gold); border-bottom: 3px solid var(--gold); padding: 28px 0 32px; }
     .cd-label { text-align: center; font-size: 11px; letter-spacing: .28em; color: var(--gold); font-weight: 700; margin: 0 0 4px; font-family: var(--font-sans); }
@@ -709,6 +740,194 @@
     #access { background: var(--bg); padding-bottom: clamp(28px,3.5vw,48px) !important; }
     /* Section padding — kaonavi流だがコンパクト化 */
     section.section { padding: clamp(56px,7vw,96px) 0; }
+
+    /* ============================================
+       達成報告バナー #thanks
+       ============================================ */
+    #thanks {
+      background:
+        radial-gradient(ellipse 60% 50% at 15% 10%, rgba(201,168,76,.14) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 90% 90%, rgba(196,18,48,.08) 0%, transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      border-bottom: 1px solid var(--line);
+      padding: clamp(64px,8vw,120px) 0 clamp(48px,6vw,80px) !important;
+      margin-top: 70px; /* nav 高さ */
+      position: relative;
+    }
+    .thanks-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
+    .thanks-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, var(--gold-lt), var(--gold));
+      color: #fff;
+      font-family: var(--font-sans); font-weight: 900;
+      font-size: clamp(12px,1.5vw,15px); letter-spacing: .06em;
+      padding: 9px 22px;
+      border-radius: 999px;
+      box-shadow: 0 6px 22px rgba(201,168,76,.35);
+      margin-bottom: 24px;
+    }
+    .thanks-ribbon-l, .thanks-ribbon-r { font-size: 16px; opacity: .9; }
+    .thanks-h {
+      font-family: var(--font-serif); font-weight: 900;
+      font-size: clamp(28px,4.5vw,56px);
+      line-height: 1.4;
+      color: var(--ink); margin: 0 auto 18px;
+      word-break: keep-all;
+      max-width: 24ch;
+    }
+    .thanks-h-num {
+      color: var(--red);
+      font-size: 1.15em;
+      display: inline-block;
+      padding: 0 .15em;
+    }
+    .thanks-h-main { display: inline-block; }
+    .thanks-sub { color: var(--ink-s); font-size: clamp(14px,1.6vw,16px); line-height: 1.9; margin: 0 auto 36px; max-width: 640px; }
+    .thanks-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      max-width: 900px;
+      margin: 0 auto 44px;
+    }
+    .thanks-stat {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.04);
+    }
+    .thanks-stat-accent {
+      background: linear-gradient(135deg, rgba(196,18,48,.08), rgba(224,122,30,.06));
+      border-color: rgba(196,18,48,.3);
+    }
+    .thanks-stat-label { font-size: 11px; letter-spacing: .18em; color: var(--ink-m); font-weight: 700; font-family: var(--font-sans); margin-bottom: 8px; }
+    .thanks-stat-value {
+      font-family: var(--font-serif); font-weight: 900;
+      font-size: clamp(22px,3.2vw,34px);
+      color: var(--gold-dk); line-height: 1.1;
+    }
+    .thanks-stat-accent .thanks-stat-value { color: var(--red); }
+    .thanks-stat-unit { font-size: .55em; margin-left: 2px; font-weight: 700; opacity: .85; }
+    .thanks-steps {
+      display: flex; justify-content: center; align-items: stretch;
+      flex-wrap: wrap; gap: 8px;
+      max-width: 900px; margin: 0 auto 36px;
+    }
+    .thanks-step {
+      flex: 1 1 180px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 14px;
+      text-align: center;
+    }
+    .thanks-step.done {
+      background: linear-gradient(135deg, rgba(201,168,76,.12), rgba(201,168,76,.04));
+      border-color: var(--gold);
+      position: relative;
+    }
+    .thanks-step.done::after {
+      content: '✓ 達成';
+      position: absolute;
+      top: -10px; right: 12px;
+      background: var(--gold);
+      color: #fff;
+      font-size: 10px; letter-spacing: .14em; font-weight: 900;
+      padding: 3px 10px;
+      border-radius: 999px;
+      box-shadow: 0 3px 10px rgba(201,168,76,.4);
+    }
+    .thanks-step-icon { font-size: 28px; margin-bottom: 6px; line-height: 1; }
+    .thanks-step-t { font-family: var(--font-serif); font-weight: 900; font-size: clamp(14px,1.6vw,17px); color: var(--ink); margin-bottom: 4px; }
+    .thanks-step-d { font-size: 11px; letter-spacing: .08em; color: var(--ink-m); font-family: var(--font-sans); }
+    .thanks-step-arrow { display: flex; align-items: center; justify-content: center; color: var(--gold-dk); font-size: 20px; font-weight: 700; }
+    .thanks-cta-lead {
+      font-family: var(--font-serif); font-weight: 900;
+      font-size: clamp(16px,2vw,22px);
+      color: var(--ink);
+      margin: 24px 0 44px;
+      letter-spacing: .04em;
+    }
+
+    /* 支援者ロゴマーキー */
+    .supporters-block { margin-top: 20px; }
+    .supporters-title {
+      font-family: var(--font-sans); font-weight: 700;
+      font-size: 12px; letter-spacing: .22em;
+      color: var(--gold-dk);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .marquee {
+      position: relative;
+      overflow: hidden;
+      padding: 10px 0;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 6%, #000 94%, transparent 100%);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 32px;
+      width: max-content;
+      animation: marquee-scroll 60s linear infinite;
+      will-change: transform;
+    }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    @keyframes marquee-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+    }
+    .supporter {
+      flex: 0 0 auto;
+      width: 160px; height: 90px;
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      padding: 12px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.04);
+      overflow: hidden;
+    }
+    .supporter img {
+      max-width: 100%; max-height: 100%;
+      width: auto; height: auto;
+      object-fit: contain;
+      display: block;
+    }
+    .supporter-text {
+      background: linear-gradient(135deg, rgba(201,168,76,.08), rgba(201,168,76,.02));
+      border: 1px dashed rgba(201,168,76,.4);
+    }
+    .supporter-text span {
+      font-family: var(--font-serif); font-weight: 900;
+      font-size: 14px; color: var(--ink);
+      text-align: center; line-height: 1.4;
+      word-break: keep-all;
+    }
+    .supporters-note {
+      text-align: center;
+      font-size: 11px; letter-spacing: .06em;
+      color: var(--ink-m);
+      margin-top: 18px; line-height: 1.7;
+    }
+
+    .pc-only { display: inline; }
+    .sp-only { display: none; }
+
+    @media (max-width: 720px) {
+      #thanks { margin-top: 60px; }
+      .thanks-stats { grid-template-columns: repeat(2, 1fr); }
+      .thanks-steps { gap: 6px; }
+      .thanks-step { flex-basis: calc(33% - 20px); padding: 14px 8px; }
+      .thanks-step-arrow { display: none; }
+      .supporter { width: 130px; height: 72px; padding: 10px; }
+      .pc-only { display: none; }
+      .sp-only { display: inline; }
+    }
     /* Editorial section heading */
     .sec-head { text-align: center; margin-bottom: clamp(28px,4vw,56px); }
     .sec-head .eyebrow {
@@ -814,6 +1033,99 @@
   </div>
 </nav>
 
+<!-- 達成報告バナー -->
+<section id="thanks" class="section">
+  <div class="wrap">
+    <div class="thanks-inner rv">
+      <div class="thanks-badge" aria-hidden="true">
+        <span class="thanks-ribbon-l">🌾</span>
+        <span class="thanks-badge-txt">目標 100万円 達成！／153時間カラオケ 完走！</span>
+        <span class="thanks-ribbon-r">🌾</span>
+      </div>
+      <h2 class="thanks-h">
+        <span class="thanks-h-num">139名</span>の皆さま、<br>
+        <span class="thanks-h-main">本当にありがとうございました。</span>
+      </h2>
+      <p class="thanks-sub">皆さまのご支援と歌声で、2026年9月21日〜28日の<br class="pc-only">「153時間連続カラオケチャレンジ」を完走することができました。</p>
+
+      <div class="thanks-stats rv rv-d1">
+        <div class="thanks-stat">
+          <div class="thanks-stat-label">支援者数</div>
+          <div class="thanks-stat-value">139<span class="thanks-stat-unit">名</span></div>
+        </div>
+        <div class="thanks-stat">
+          <div class="thanks-stat-label">支援総額</div>
+          <div class="thanks-stat-value">1,012,556<span class="thanks-stat-unit">円</span></div>
+        </div>
+        <div class="thanks-stat thanks-stat-accent">
+          <div class="thanks-stat-label">目標達成率</div>
+          <div class="thanks-stat-value">101<span class="thanks-stat-unit">%</span></div>
+        </div>
+        <div class="thanks-stat">
+          <div class="thanks-stat-label">連続歌唱</div>
+          <div class="thanks-stat-value">153<span class="thanks-stat-unit">時間</span></div>
+        </div>
+      </div>
+
+      <div class="thanks-steps rv rv-d2" aria-label="次のステップ">
+        <div class="thanks-step done">
+          <div class="thanks-step-icon">🎤</div>
+          <div class="thanks-step-t">153時間を完走</div>
+          <div class="thanks-step-d">2026.09.21〜28</div>
+        </div>
+        <div class="thanks-step-arrow" aria-hidden="true">→</div>
+        <div class="thanks-step">
+          <div class="thanks-step-icon">👕</div>
+          <div class="thanks-step-t">制服支援を実行</div>
+          <div class="thanks-step-d">子どもたちの未来へ</div>
+        </div>
+        <div class="thanks-step-arrow" aria-hidden="true">→</div>
+        <div class="thanks-step">
+          <div class="thanks-step-icon">🌏</div>
+          <div class="thanks-step-t">2028年ギネス挑戦</div>
+          <div class="thanks-step-d">沖縄から世界へ</div>
+        </div>
+      </div>
+
+      <p class="thanks-cta-lead">ここからが、僕たちの挑戦のスタートです。</p>
+
+      <!-- 支援者ロゴ マーキー -->
+      <div class="supporters-block">
+        <p class="supporters-title">ご支援いただいた皆さま</p>
+        <div class="marquee" role="list" aria-label="支援者ロゴ一覧">
+          <div class="marquee-track" id="supportersTrack">
+            <!-- 1周目 (JSで複製して無限ループ) -->
+            <div class="supporter" role="listitem"><img src="assets/supporters/クレープの森.jpg" alt="クレープの森" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/レモンハート.jpg" alt="BAR LEMON HEART" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/showmarine.jpg" alt="Show Marine" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/wanabe.png" alt="WANABE MOVIE" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/松尾不動産.jpg" alt="松尾不動産 Matsuo Real Estate" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/大同生命.jpg" alt="大同生命" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/Kiratt.jpg" alt="Kiratt 歯のホワイトニング専門店" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/センターグループ.png" alt="CENTER GROUP" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/イナミ塩ラーメン.jpg" alt="イナミ塩ラーメン" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/niibunjaa.jpg" alt="沖縄そば にぃぶんじゃ〜" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/かめたろうやー.jpg" alt="かめたろうやー 羽地古民家" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/carmatch-naha-shuri.jpg" alt="車販戦隊カーマッチ 那覇首里店" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/sstyle.jpg" alt="S style" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/tak-food-company.jpg" alt="TAK FOOD COMPANY 株式会社" loading="lazy"></div>
+            <div class="supporter" role="listitem"><img src="assets/supporters/そらまめDRONE.jpg" alt="そらまめ DRONE" loading="lazy"></div>
+            <!-- ロゴなし・テキストのみ -->
+            <div class="supporter supporter-text" role="listitem"><span>シック</span></div>
+            <div class="supporter supporter-text" role="listitem"><span>anshare</span></div>
+            <div class="supporter supporter-text" role="listitem"><span>B級酒場<br>FreeMoon</span></div>
+            <div class="supporter supporter-text" role="listitem"><span>（有）<br>鏡原酒販</span></div>
+            <div class="supporter supporter-text" role="listitem"><span>宮里 匠</span></div>
+            <div class="supporter supporter-text" role="listitem"><span>Akipro.</span></div>
+            <div class="supporter supporter-text" role="listitem"><span>SearchMania</span></div>
+          </div>
+        </div>
+        <p class="supporters-note">※ 一部の皆さまはお名前のみの掲載となっております。掲載希望・差替えご希望は代表までご連絡ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- HERO -->
 <section id="hero" class="section">
   <div class="hero-bg" aria-hidden="true"></div>
@@ -897,24 +1209,19 @@
 </section>
 
 <!-- COUNTDOWN -->
-<div id="cd-section">
+<div id="cd-section" class="done">
   <div class="wrap">
     <div class="cd-label">🥇 OKINAWA-ICHI CHALLENGE 2026</div>
     <div class="cd-sub">
       <img class="h153-brush brush-img" src="assets/153h-brush.png" alt="153時間チャレンジ" width="1536" height="1024">
       <span class="sr-only">153時間チャレンジ</span>
     </div>
-    <p class="cd-until">スタートまで</p>
-    <div class="cd-board" role="timer" aria-live="polite" aria-label="カウントダウン">
-      <div class="cd-unit"><div class="cd-digit" id="cd-d">000</div><div class="cd-unit-l">日</div></div>
-      <div class="cd-colon" aria-hidden="true">:</div>
-      <div class="cd-unit"><div class="cd-digit" id="cd-h">00</div><div class="cd-unit-l">時間</div></div>
-      <div class="cd-colon" aria-hidden="true">:</div>
-      <div class="cd-unit"><div class="cd-digit" id="cd-m">00</div><div class="cd-unit-l">分</div></div>
-      <div class="cd-colon" aria-hidden="true">:</div>
-      <div class="cd-unit"><div class="cd-digit" id="cd-s">00</div><div class="cd-unit-l">秒</div></div>
+    <div class="cd-done-board" role="status" aria-live="polite">
+      <div class="cd-done-badge">✓ 完走</div>
+      <div class="cd-done-main">153時間、歌い切りました！</div>
+      <div class="cd-done-sub">皆さまの支援と歌声に、心から感謝します</div>
     </div>
-    <div class="cd-date">2026年9月21日（月）18:00 スタート ／ 9月28日（日）3:00 フィニッシュ</div>
+    <div class="cd-date">2026年9月21日（月）18:00 〜 9月28日（日）3:00 ／ 達成</div>
   </div>
 </div>
 
@@ -1387,7 +1694,7 @@
     setInterval(tick, 1000);
   }
   /* 2026 countdown: 2026-09-21 18:00 JST */
-  makeTicker(new Date('2026-09-21T09:00:00Z'), ['cd-d','cd-h','cd-m','cd-s'], true);
+  /* 2026 CD は 完走済み (達成表示へ切替) — makeTicker 呼び出し不要 */
   /* 2027 countdown: 2027-09-15 18:00 JST — 日本一 */
   makeTicker(new Date('2027-09-15T09:00:00Z'), ['cd3-d','cd3-h','cd3-m','cd3-s'], true);
   /* 2028 countdown: 2028-09-01 18:00 JST — ギネス */
