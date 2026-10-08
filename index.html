@@ -785,18 +785,14 @@
        ============================================ */
     #thanks {
       background: var(--bg);
-      border-top: 1px solid var(--ink);
       border-bottom: 1px solid var(--line);
-      padding: clamp(64px,8vw,120px) 0 clamp(44px,5vw,64px) !important;
-      margin-top: 70px;
+      padding: clamp(48px,8vw,120px) 0 clamp(44px,5vw,64px) !important;
+      margin-top: 72px;
       position: relative;
     }
-    #thanks::before, #thanks::after {
-      content: ''; position: absolute; left: 0; right: 0; height: 0;
-      border-top: 1px solid var(--ink);
+    @media (max-width: 540px) {
+      #thanks { margin-top: 60px; padding-top: 36px !important; }
     }
-    #thanks::before { top: 68px; opacity: .6; }
-    #thanks::after  { top: 72px; opacity: .35; }
     .thanks-inner { max-width: 1100px; margin: 0 auto; text-align: left; }
     .thanks-dateline {
       display: flex; align-items: center; gap: 14px;
@@ -1310,7 +1306,6 @@
     .sp-only { display: none; }
 
     @media (max-width: 720px) {
-      #thanks { margin-top: 60px; }
       .thanks-stats { grid-template-columns: repeat(2, 1fr); }
       .thanks-achievements { grid-template-columns: 1fr; }
       .achievement { padding: 22px 18px; }
