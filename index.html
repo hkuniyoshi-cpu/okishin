@@ -1115,6 +1115,40 @@
     .ach-stat-unit { font-size: .55em; margin-left: 2px; font-weight: 700; opacity: .85; }
     .ach-stat-accent .ach-stat-value { color: var(--red); }
     .ach-stat-accent-gold .ach-stat-value { color: var(--gold-dk); }
+    /* 達成報告ビジュアル (CF + 153h の2枚ドキュメント) */
+    .thanks-reports {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px,2.4vw,32px);
+      margin: 40px 0 0;
+    }
+    .report-item {
+      position: relative;
+      background: var(--bg2);
+      overflow: hidden;
+    }
+    .report-item img {
+      width: 100%; height: auto; display: block;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      transition: transform .8s cubic-bezier(.22,1,.36,1);
+    }
+    .report-item:hover img { transform: scale(1.03); }
+    .report-item figcaption {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 12px 4px 0;
+      font-family: var(--font-sans); font-size: 12px; letter-spacing: .06em;
+      color: var(--ink-m);
+      flex-wrap: wrap;
+    }
+    .rep-tag { font-weight: 900; letter-spacing: .18em; font-size: 11px; }
+    .rep-tag-red { color: var(--red); }
+    .rep-tag-gold { color: var(--gold-dk); }
+    .rep-cap { font-family: var(--font-serif); font-weight: 700; color: var(--ink); font-size: 13px; letter-spacing: .04em; }
+    @media (max-width: 760px) {
+      .thanks-reports { grid-template-columns: 1fr; }
+    }
+
     /* 3年間の時間軸タイムライン */
     .thanks-timeline {
       position: relative;
@@ -1463,6 +1497,24 @@
           <text x="70" y="92" text-anchor="middle" font-family="serif" font-size="30" font-weight="900" fill="#fff" letter-spacing="2">走</text>
         </svg>
       </div>
+
+      <!-- 当日のビジュアル報告 (2枚のドキュメント写真) -->
+      <figure class="thanks-reports rv rv-d1">
+        <div class="report-item">
+          <img src="assets/report-crowdfund.jpg" alt="クラウドファンディング達成報告 — 139名のご支援・1,012,556円・達成率101%" loading="lazy">
+          <figcaption>
+            <span class="rep-tag rep-tag-red">● CROWDFUNDING</span>
+            <span class="rep-cap">目標100万円を達成した日の報告</span>
+          </figcaption>
+        </div>
+        <div class="report-item">
+          <img src="assets/report-153h.jpg" alt="153時間連続カラオケチャレンジ完走報告 — 2026年9月21日〜28日" loading="lazy">
+          <figcaption>
+            <span class="rep-tag rep-tag-gold">● OKINAWA-ICHI</span>
+            <span class="rep-cap">153時間、歌い切りました</span>
+          </figcaption>
+        </div>
+      </figure>
 
       <!-- 3年間の時間軸 (チャート型タイムライン・カード無し) -->
       <div class="thanks-timeline rv rv-d2" aria-label="3年間の時間軸">
