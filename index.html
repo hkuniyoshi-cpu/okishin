@@ -868,9 +868,9 @@
     }
     .marquee-track {
       display: flex;
-      gap: 32px;
+      gap: 40px;
       width: max-content;
-      animation: marquee-scroll 60s linear infinite;
+      animation: marquee-scroll 90s linear infinite;
       will-change: transform;
     }
     .marquee:hover .marquee-track { animation-play-state: paused; }
@@ -883,13 +883,13 @@
     }
     .supporter {
       flex: 0 0 auto;
-      width: 160px; height: 90px;
+      width: 320px; height: 180px;
       background: var(--bg);
       border: 1px solid var(--line);
-      border-radius: 12px;
+      border-radius: 16px;
       display: flex; align-items: center; justify-content: center;
-      padding: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,.04);
+      padding: 20px;
+      box-shadow: 0 4px 18px rgba(0,0,0,.05);
       overflow: hidden;
     }
     .supporter img {
@@ -904,8 +904,8 @@
     }
     .supporter-text span {
       font-family: var(--font-serif); font-weight: 900;
-      font-size: 14px; color: var(--ink);
-      text-align: center; line-height: 1.4;
+      font-size: 22px; color: var(--ink);
+      text-align: center; line-height: 1.45;
       word-break: keep-all;
     }
     .supporters-note {
@@ -924,7 +924,8 @@
       .thanks-steps { gap: 6px; }
       .thanks-step { flex-basis: calc(33% - 20px); padding: 14px 8px; }
       .thanks-step-arrow { display: none; }
-      .supporter { width: 130px; height: 72px; padding: 10px; }
+      .supporter { width: 240px; height: 136px; padding: 16px; }
+      .supporter-text span { font-size: 18px; }
       .pc-only { display: none; }
       .sp-only { display: inline; }
     }
